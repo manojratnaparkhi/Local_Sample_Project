@@ -1,9 +1,14 @@
 pipeline {
             agent any
+            environment {
+                        NEW_VERSION='1.2.3'
+                        SERVER_CREDENTIALS=credentials('sample_server_creds')
+            }
             stages {
                     stage ("build") {
                                       steps {
                                               echo 'building..echo'
+                                                  echo "building version ${NEW_VERSION}"
                                             }
                 
                                     }
@@ -30,6 +35,14 @@ pipeline {
                         stage ("deploy") {
                                       steps {
                                               echo 'Deploying..echo'
+                                                  echo "print credentials ${SERVER_CREDENTIALS}"
+
+                                                  withcredentials ([
+                                                              usernamePassword (credentials: 'sample_server_creds', usernameVariable: USER, passwordVariable: PWD)
+                                                  ])
+                                                  {
+                                                              sh "some script ${USER} ${PWD}"
+                                                  }
                                             }
                 
                                     }
