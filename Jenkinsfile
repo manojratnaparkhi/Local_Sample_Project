@@ -37,13 +37,7 @@ pipeline {
                                               echo 'Deploying..echo'
                                                  // echo "print credentials ${SERVER_CREDENTIALS}"
 
-                                                  withCredentials([
-                                                              usernamePassword(credentials: 'sample_server_creds', usernameVariable: USER, passwordVariable: PWD)
-                                                  ])
-                                                  {
-                                                              echo "some script ${USER}"
-                                                              echo "some script ${PWD}"
-                                                  }
+                                                 
                                             }
                 
                                     }
