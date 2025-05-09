@@ -42,6 +42,7 @@ pipeline {
                                                   ])
                                                   {
                                                               echo "some script ${USER} ${PWD}"
+                                                              echo "some script ${PWD}"
                                                   }
                                             }
                 
